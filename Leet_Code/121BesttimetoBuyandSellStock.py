@@ -1,4 +1,6 @@
 '''121 Best time to buy and sell stocks'''
+# see dp.py file too
+
 ## below is python greedy
 class Solution(object):
     def maxProfit(self,prices):
@@ -7,7 +9,36 @@ class Solution(object):
             buy, profit = min(buy, price), max(profit, price-buy)
         return profit
 
-##
+## Dp O(n**2)
+class Solution(object):
+    def maxProfit(self, a):
+        if not a: return 0
+        n = len(a)
+        # dp[i][state] where state = 0: doing nothing, 1: buy, 2: sell
+        dp = [[0]*3 for _ in range(n)]
+        for i in range(n):
+            # dp[i][0] = dp[i-1][0]
+            dp[i][1] = max( -a[i] , dp[i-1][1] if i-1 >= 0 else -float('inf'))
+            dp[i][2] = max(dp[i-1][1] + a[i] if i-1 >= 0 else -float('inf'), dp[i-1][2] if i-1 >= 0 else -float('inf'))
+        return  max(dp[n-1][0], dp[n-1][2])
+
+# DP O(n)
+class Solution(object):
+    def maxProfit(self, prices):
+        if not prices:
+            return 0
+
+        n = len(prices)
+        dp = [0] * (n)
+        lowest_buy = prices[0]
+        for i in range(n):
+            dp[i] = max(dp[i - 1], prices[i] - lowest_buy)
+            if (prices[i] < lowest_buy):
+                lowest_buy = prices[i]
+
+        return dp[n - 1]
+
+#
 class Solution(object):
     def maxProfit(self, prices):
         if not prices:
