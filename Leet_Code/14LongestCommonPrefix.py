@@ -1,4 +1,7 @@
-'''14 Longest common Prefix'''
+'''14 Longest common Prefix
+You could use below or you could find the shortest and longest words in strs and compare
+what part of shortest in in longest and store result
+'''
 
 
 class Solution(object):
@@ -26,3 +29,20 @@ class Solution(object):
                             i:]  # since we want prefix to be same, we del all letters if letter at i is not the same
                         break
         return "".join(same)
+
+#
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+
+        strs.sort()
+
+        result = []
+
+        for idx, char in enumerate(strs[0]):
+            if char == strs[-1][idx]:
+                result.append(char)
+            else:
+                break
+
+        return "".join(result)

@@ -5,7 +5,9 @@ this is the kind of thing we did in AddTwoNumbers
 Second method is not creating a new node (dummy) for starting pointer but instead
 assigning head to the linked list with lower first node and then using node variable to
 store new linked list (just like current).
-Note that we keep on reducing the l1 and l2 linked lists    '''
+Note that we keep on reducing the l1 and l2 linked lists
+  Method 3 is using recursion
+ '''
 class Solution:
     def mergeTwoLists(self, l1, l2):
         dummy = ListNode()
@@ -86,4 +88,18 @@ class Solution(object):
             return current_1
         else:
             return current_2
+
+#
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        if l1 is None:
+            return l2
+        elif l2 is None:
+            return l1
+        elif l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
 
