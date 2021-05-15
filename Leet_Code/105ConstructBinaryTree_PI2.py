@@ -16,6 +16,7 @@ class Solution:
         # here we reverse the preorder list so that the complexity for pop(last) = 1
         # because complexity for pop(0) was O(n)
         root = self.helper(preorder[::-1], inorder, 0, len(inorder), memory)
+
         return root
 
     def helper(self, preorder, inorder, leftPointer, rightPointer, memory):
@@ -32,5 +33,7 @@ class Solution:
 
 preorder = [1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 7]
 inorder = [8, 4, 9, 2, 10, 5, 11, 1, 6, 3, 7]
+#preorder = ['A','B','D','E','C','F']
+#inorder = ['D','B','E','A','F','C']
 tree = Solution()
 tree.buildTree(preorder, inorder)

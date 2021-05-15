@@ -5,25 +5,11 @@ class Node():
         self.left = None
         self.right = None
 
-class Queue():
-    def __init__(self):
-        self.items = []
-
-    def enqueue(self, item):
-        self.items.append(item)
-
-    def dequeue(self):
-        if len(self.items):
-            return self.items.pop(0)
-
-    def peek(self):
-        if len(self.items):
-            return self.items[0].value
-
 class BinaryTree():
     def __init__(self,value):
         self.root = Node(value)
 
+    # BFS
     def levelorder(self, start): #No recursion
         if start is None:
             return
@@ -41,6 +27,22 @@ class BinaryTree():
 
         return traversal
 
+class Queue():
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        if len(self.items):
+            return self.items.pop(0)
+
+    def peek(self):
+        if len(self.items):
+            return self.items[0].value
+
+
 tree = BinaryTree(3)
 
 tree.root.left = Node(4)
@@ -53,6 +55,7 @@ tree.root.right.left = Node(8)
 tree.root.right.right = Node(9)
 tree.root.right.right.left = Node(20)
 
+print(tree.levelorder(tree.root))
+
 #invert_binary_tree = Solution()
 #invert_binary_tree.invertTree(tree)
-print(tree.levelorder(tree.root))

@@ -12,6 +12,7 @@ class BinaryTree():
 
     # root -> left -> right
     def preorder(self,start,traversal):
+        """This is preorder traversal"""
         if start is None:
             return
         traversal.append(start.value)
@@ -49,6 +50,7 @@ tree.root.right.left = Node(8)
 tree.root.right.right = Node(9)
 
 print(tree.preorder(tree.root,[]))
+print(tree.preorder.__doc__)
 print(tree.inorder(tree.root,[]))
 print(tree.postorder(tree.root,[]))
 
